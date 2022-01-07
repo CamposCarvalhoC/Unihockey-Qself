@@ -3,6 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.metrics import confusion_matrix
 import seaborn as sn
+import csv
 
 class Utils:
 
@@ -26,7 +27,7 @@ class Utils:
 
     @staticmethod
     def plot_with_markers(data,markers):
-        fig, ax = plt.subplots(figsize=(15,7))
+        fig, ax = plt.subplots(figsize=(20,7))
         for col in data.columns:
             ax.plot(data[col],label=col)
         for i,(start,end) in enumerate(markers):
@@ -86,7 +87,7 @@ class Utils:
 
     @staticmethod
     def plot_with_markers_label(data,markers):
-        fig, ax = plt.subplots(figsize=(15,7))
+        fig, ax = plt.subplots(figsize=(20,7))
         for col in data.columns:
             ax.plot(data[col],label=col)
         for i,(start,end,label) in enumerate(markers):
@@ -109,3 +110,15 @@ class Utils:
         ax.set_xlabel('Pred label')
         cm = confusion_matrix(y_true, y_pred)
         sn.heatmap(cm,ax=ax, annot=True,xticklabels=Utils.LABELS,yticklabels=Utils.LABELS)
+
+    @staticmethod
+    def create_results_csv(y,name_file):
+        unique, counts = np.unique(y, return_counts=True)
+        res = {Utils.LABELS[u]:c for u,c in zip(unique,counts) if u!=0}
+
+        with open(name_file,'w',newline='') as f:
+            writer = csv.writer(f)
+            for k,v in res.items():
+                writer.writerow([k,v])
+
+        return res
