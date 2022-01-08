@@ -61,7 +61,7 @@ source venv\bin\activate
 ```
 pip install -r requirements_flask.txt
 ```
-4. Run the web server:
+5. Run the web server:
 
 ```
 python app.py
