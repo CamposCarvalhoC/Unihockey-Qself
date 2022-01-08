@@ -7,7 +7,7 @@ import csv
 
 class Utils:
 
-    LABELS = ['idk','shoot','pass']
+    LABELS = ['idk','Shoot','Pass']
 
     @staticmethod
     def read_data_csv(filename):
@@ -121,4 +121,18 @@ class Utils:
             for k,v in res.items():
                 writer.writerow([k,v])
 
+        return res
+
+    @staticmethod
+    def create_csv_with_timeseries(y,timeseries,name_file):
+        unique, counts = np.unique(y, return_counts=True)
+        res = {Utils.LABELS[u]:c for u,c in zip(unique,counts) if u!=0}
+
+        timeseries['Type'] = np.nan
+        timeseries['Amount'] = np.nan
+
+        timeseries.loc[:2,'Type']= list(res.keys())
+        timeseries.loc[:2,'Amount']= list(res.values())  
+
+        timeseries.to_csv(name_file)
         return res
