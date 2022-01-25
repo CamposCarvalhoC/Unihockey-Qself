@@ -68,3 +68,10 @@ python app.py
 ```
 
 5. All files are stored in Jupyter notebooks.
+
+
+### Documents
+
+* [Report [PDF]](unihockey-report-qself.pdf)
+* [Presentation [PDF]](Unihockey-presentation-qself.pdf)
+* [Journal de travail [Wiki]](https://github.com/CamposCarvalhoC/Unihockey-Qself/wiki/Journal-de-travail)
